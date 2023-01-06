@@ -9,9 +9,9 @@ deleted_folder = f'/Users/{USERNAME}/Desktop/deleted'
 
 
 def delete_empty_folders(directory):
-    """Deletes empty directories in the specified directory and moves them
-    to a new folder called "deleted" on the
-    desktop.
+    """Deletes empty directories and directories containing a file with a .file
+    extension in the specified directory and moves them to a new folder called
+    "deleted" on the desktop.
     """
 
     if not os.path.exists(deleted_folder):
@@ -20,8 +20,8 @@ def delete_empty_folders(directory):
     # Iterate over the contents of the user's Documents directory
     for entry in os.scandir(documents_dir):
         if entry.is_dir():
-            if not os.listdir(entry.path):
-                # Move the empty directory to the "deleted" folder
+            # Check if the directory is empty or contains a file with a .file extension
+                # Move the empty directory or the directory containing a .file file to the "deleted" folder
                 os.rename(entry.path, os.path.join(deleted_folder, entry.name))
 
 
