@@ -21,6 +21,7 @@ def delete_empty_folders(directory):
     for entry in os.scandir(documents_dir):
         if entry.is_dir():
             # Check if the directory is empty or contains a file with a .file extension
+            if (not os.listdir(entry.path)) or any(f.endswith('.file') for f in os.listdir(entry.path)):
                 # Move the empty directory or the directory containing a .file file to the "deleted" folder
                 os.rename(entry.path, os.path.join(deleted_folder, entry.name))
 
